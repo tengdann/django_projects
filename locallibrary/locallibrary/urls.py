@@ -20,9 +20,16 @@ urlpatterns = [
     path('admin/', admin.site.urls),
 ]
 
-
 #Add URL maps to redirect the base URL to our application
 from django.views.generic import RedirectView
 urlpatterns += [
     path('', RedirectView.as_view(url='/catalog/', permanent=True)),
+]
+
+# Use include() to add paths from the catalog application
+from django.urls import include
+from django.urls import path
+
+urlpatterns += [
+    path('catalog/', include('catalog.urls')),
 ]
