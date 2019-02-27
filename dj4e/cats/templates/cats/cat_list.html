@@ -9,7 +9,7 @@
           {{ cat.nickname }} ({{ cat.breed }})
           (<a href="{% url 'cat_update' cat.id %}">Update</a> |
           <a href="{% url 'cat_delete' cat.id %}">Delete</a>) <br/>
-          {{ auto.foods }} ({{ auto.weight }} lbs)
+          {{ cat.foods }} ({{ cat.weight }} lbs)
       </li>
     {% endfor %}
   </ul>
