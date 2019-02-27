@@ -17,7 +17,7 @@ class CatsView(LoginRequiredMixin, View) :
         al = Cat.objects.all()
 
         ctx = { 'breed_count': mc, 'cat_list': al }
-        return render(request, 'cats/cat_list.html', ctx)
+        return render(request, 'cats/templates/cat_list.html', ctx)
 
 class BreedView(LoginRequiredMixin,View) :
     def get(self, request):
