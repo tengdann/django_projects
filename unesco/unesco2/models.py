@@ -2,31 +2,31 @@ from django.db import models
 
 # Create your models here.
 
-class Category(models.Model):
+class unesco_category(models.Model):
     name = models.CharField(max_length = 128)
 
     def __str__(self):
         return self.name
 
-class State(models.Model):
+class unesco_states(models.Model):
     name = models.CharField(max_length = 128)
 
     def __str__(self):
         return self.name
 
-class Region(models.Model):
+class unesco_regions(models.Model):
     name = models.CharField(max_length = 128)
 
     def __str__(self):
         return self.name
 
-class Iso(models.Model):
+class unesco_iso(models.Model):
     name = models.CharField(max_length = 128)
 
     def __str__(self):
         return self.name
 
-class Site(models.Model):
+class unesco_site(models.Model):
     name = models.CharField(max_length = 128)
     description = models.CharField(max_length = 4096)
     justification = models.CharField(max_length = 4096)
@@ -34,10 +34,10 @@ class Site(models.Model):
     longitude = models.FloatField(null = True)
     latitude = models.FloatField(null = True)
     area_hectares = models.FloatField(null = True)
-    category = models.ForeignKey(Category, on_delete = models.CASCADE)
-    states = models.ForeignKey(State, on_delete = models.CASCADE)
-    region = models.ForeignKey(Region, on_delete = models.CASCADE)
-    iso = models.ForeignKey(Iso, on_delete = models.CASCADE)
+    category = models.ForeignKey(unesco_category, on_delete = models.CASCADE)
+    state = models.ForeignKey(unesco_states, on_delete = models.CASCADE)
+    region = models.ForeignKey(unesco_regions, on_delete = models.CASCADE)
+    iso = models.ForeignKey(unesco_iso, on_delete = models.CASCADE)
 
 
     def __str__(self):
