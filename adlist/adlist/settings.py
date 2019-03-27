@@ -72,6 +72,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django.contrib.messages.context_processors.messages',
+                'home.context_processors.settings',
+                'social_django.context_processors.backends',
+                'social_django.context_processors.login_redirect',
             ],
         },
     },
@@ -128,3 +132,49 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    )
+}
+
+# Make sure the correct requirements are installed - easy fix if these exceptions happen
+# pip install -r requirements.txt    # or pip3
+try:
+    from rest_framework import serializers
+except:
+    raise Exception('rest_framework not installed, please see requirements.txt')
+
+try: 
+    from crispy_forms.helper import FormHelper
+except:
+    raise Exception('crispy forms not installed, please see requirements.txt')
+
+# https://python-social-auth.readthedocs.io/en/latest/configuration/django.html
+try: 
+    from social_core.utils import setting_name
+except:
+    raise Exception('social django not installed, please see requirements.txt')
+
+# Configure the social login
+try:
+    from . import github_settings 
+    SOCIAL_AUTH_GITHUB_KEY = github_settings.SOCIAL_AUTH_GITHUB_KEY
+    SOCIAL_AUTH_GITHUB_SECRET = github_settings.SOCIAL_AUTH_GITHUB_SECRET
+except:
+    print('Could not import github_settings.py for social_django, please see samples/github_settings-dist.py')
+
+# https://python-social-auth.readthedocs.io/en/latest/configuration/django.html#authentication-backends
+# https://simpleisbetterthancomplex.com/tutorial/2016/10/24/how-to-add-social-login-to-django.html
+AUTHENTICATION_BACKENDS = (
+    'social_core.backends.github.GithubOAuth2',
+    # 'social_core.backends.twitter.TwitterOAuth',
+    # 'social_core.backends.facebook.FacebookOAuth2',
+
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+LOGOUT_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = '/'
