@@ -15,7 +15,7 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-APP_NAME = 'ChucksList?'
+APP_NAME = 'AdsList'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.1/howto/deployment/checklist/
@@ -147,20 +147,20 @@ try:
 except:
     raise Exception('rest_framework not installed, please see requirements.txt')
 
-try: 
+try:
     from crispy_forms.helper import FormHelper
 except:
     raise Exception('crispy forms not installed, please see requirements.txt')
 
 # https://python-social-auth.readthedocs.io/en/latest/configuration/django.html
-try: 
+try:
     from social_core.utils import setting_name
 except:
     raise Exception('social django not installed, please see requirements.txt')
 
 # Configure the social login
 try:
-    from . import github_settings 
+    from . import github_settings
     SOCIAL_AUTH_GITHUB_KEY = github_settings.SOCIAL_AUTH_GITHUB_KEY
     SOCIAL_AUTH_GITHUB_SECRET = github_settings.SOCIAL_AUTH_GITHUB_SECRET
 except:
