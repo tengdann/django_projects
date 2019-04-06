@@ -29,7 +29,7 @@ urlpatterns = [
 
 if 'social_django' in settings.INSTALLED_APPS:
     urlpatterns += [
-        url(r'oauth/', include('social_django.urls', namespace = 'social')),
+        url(r'^oauth/', include('social_django.urls', namespace = 'social')),
     ]
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
