@@ -86,7 +86,7 @@ class CommentCreateView(LoginRequiredMixin, View):
         comment.save()
         return redirect(reverse_lazy('auto_detail', args=[pk]))
 
-class CommentDeleteView(AdDeleteView):
+class CommentDeleteView(AutoDeleteView):
     model = Comment
     template_name = "comment_delete.html"
 
