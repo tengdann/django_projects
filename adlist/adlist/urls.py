@@ -25,6 +25,7 @@ urlpatterns = [
     path('', include('ads.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('autos/', include('autos.urls')),
 ]
 
 if 'social_django' in settings.INSTALLED_APPS:
