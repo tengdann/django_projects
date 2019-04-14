@@ -9,7 +9,7 @@ urlpatterns = [
     path('autos/<int:pk>', views.AutoDetailView.as_view(), name='auto_detail'),
     path('autos/create',
         views.AutoFormView.as_view(success_url=reverse_lazy('autos')), name='auto_create'),
-    path('atuos/<int:pk>/update',
+    path('autos/<int:pk>/update',
         views.AutoFormView.as_view(success_url=reverse_lazy('autos')), name='auto_update'),
     path('autos/<int:pk>/delete',
         views.AutoDeleteView.as_view(success_url=reverse_lazy('autos')), name='auto_delete'),
