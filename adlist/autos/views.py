@@ -65,7 +65,7 @@ class AutoFormView(LoginRequiredMixin, View):
             form = CreateForm(request.POST, request.FILES or None)
         else:
             auto = get_object_or_404(Auto, id=pk, owner=self.request.user)
-            form = CreateForm(request.POST, request.FILES or None, instance=ad)
+            form = CreateForm(request.POST, request.FILES or None, instance=auto)
 
         if not form.is_valid() :
             ctx = {'form' : form}
