@@ -16,7 +16,7 @@ from ads.forms import CreateForm, CommentForm
 # Create your views here.
 class AdListView(AdsListView):
     model = Ad
-    template_name = 'ad_list.html'
+    template_name = 'ads/ad_list.html'
 
     def get(self, request) :
         ad_list = Ad.objects.all()
@@ -31,7 +31,7 @@ class AdListView(AdsListView):
 
 class AdDetailView(AdsDetailView):
     model = Ad
-    template_name = 'ad_detail.html'
+    template_name = 'ads/ad_detail.html'
     def get(self, request, pk) :
         ad = Ad.objects.get(id=pk)
         comments = Comment.objects.filter(ad=ad).order_by('-updated_at')
@@ -42,16 +42,16 @@ class AdDetailView(AdsDetailView):
 class AdCreateView(AdsCreateView):
     model = Ad
     fields = {'title', 'text', 'price'}
-    template_name = 'ad_form.html'
+    template_name = 'ads/ad_form.html'
 
 class AdUpdateView(AdsUpdateView):
     model = Ad
     fields = ['title', 'text', 'price']
-    template_name = "ad_form.html"
+    template_name = "ads/ad_form.html"
 
 class AdDeleteView(AdsDeleteView):
     model = Ad
-    template_name = "ad_delete.html"
+    template_name = "ads/ad_delete.html"
 
 def stream_file(request, pk) :
     ad = get_object_or_404(Ad, id=pk)
@@ -62,7 +62,7 @@ def stream_file(request, pk) :
     return response
 
 class AdFormView(LoginRequiredMixin, View):
-    template = 'ad_form.html'
+    template = 'ads/ad_form.html'
     success_url = reverse_lazy('ads')
     def get(self, request, pk=None) :
         if not pk :
@@ -101,7 +101,7 @@ class CommentCreateView(LoginRequiredMixin, View):
 
 class CommentDeleteView(AdDeleteView):
     model = Comment
-    template_name = "comment_delete.html"
+    template_name = "ads/comment_delete.html"
 
     # https://stackoverflow.com/questions/26290415/deleteview-with-a-dynamic-success-url-dependent-on-id
     def get_success_url(self):

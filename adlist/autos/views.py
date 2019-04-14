@@ -16,7 +16,7 @@ from autos.forms import CreateForm, CommentForm
 # Create your views here.
 class AutoListView(AutosListView):
     model = Auto
-    template_name = 'auto_list.html'
+    template_name = 'autos/auto_list.html'
 
     def get(self, request) :
         auto_list = Auto.objects.all()
@@ -26,7 +26,7 @@ class AutoListView(AutosListView):
 
 class AutoDetailView(AutosDetailView):
     model = Auto
-    template_name = 'auto_detail.html'
+    template_name = 'autos/auto_detail.html'
     def get(self, request, pk) :
         auto = Auto.objects.get(id=pk)
         comments = Comment.objects.filter(auto=auto).order_by('-updated_at')
@@ -37,19 +37,19 @@ class AutoDetailView(AutosDetailView):
 class AutoCreateView(AutosCreateView):
     model = Auto
     fields = {'name', 'detail', 'mileage'}
-    template_name = 'auto_form.html'
+    template_name = 'autos/auto_form.html'
 
 class AutoUpdateView(AutosUpdateView):
     model = Auto
     fields = ['name', 'detail', 'mileage']
-    template_name = "auto_form.html"
+    template_name = 'autos/auto_form.html'
 
 class AutoDeleteView(AutosDeleteView):
     model = Auto
-    template_name = "auto_delete.html"
+    template_name = 'autos/auto_delete.html'
 
 class AutoFormView(LoginRequiredMixin, View):
-    template = 'auto_form.html'
+    template = 'autos/auto_form.html'
     success_url = reverse_lazy('autos')
     def get(self, request, pk=None) :
         if not pk :
@@ -88,7 +88,7 @@ class CommentCreateView(LoginRequiredMixin, View):
 
 class CommentDeleteView(AutoDeleteView):
     model = Comment
-    template_name = "comment_delete.html"
+    template_name = 'autos/comment_delete.html'
 
     # https://stackoverflow.com/questions/26290415/deleteview-with-a-dynamic-success-url-dependent-on-id
     def get_success_url(self):
