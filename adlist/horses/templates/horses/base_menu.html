@@ -9,14 +9,14 @@
     </div>
     <!-- https://stackoverflow.com/questions/22047251/django-dynamically-get-view-url-and-check-if-its-the-current-page -->
     <ul class="nav navbar-nav">
-      {% url 'autos' as autos %}
-      <li {% if request.get_full_path == autos %}class="active"{% endif %}>
-          <a href="{% url 'autos' %}">Autos</a></li>
+      {% url 'horses' as horses %}
+      <li {% if request.get_full_path == horses %}class="active"{% endif %}>
+          <a href="{% url 'horses' %}">Autos</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
         {% if user.is_authenticated %}
         <li>
-        <a href="{% url 'auto_create' %}">Create Auto</a>
+        <a href="{% url 'horse_create' %}">Create Horse</a>
         </li>
         <li class="dropdown">
             <a href="#" data-toggle="dropdown" class="dropdown-toggle">
@@ -28,7 +28,7 @@
         </li>
         {% else %}
         <li>
-        <a href="{% url 'login' %}?next={% url 'autos' %}">Login</a>
+        <a href="{% url 'login' %}?next={% url 'horses' %}">Login</a>
         </li>
         {% endif %}
     </ul>

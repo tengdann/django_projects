@@ -1,30 +1,30 @@
-{% extends "autos/base_menu.html" %}
+{% extends "horses/base_menu.html" %}
 {% block content %}
-<h1>Autos</h1>
+<h1>horses</h1>
 <p>
-{% if auto_list %}
+{% if horse_list %}
 <ul>
-  {% for auto in auto_list %}
+  {% for horse in horse_list %}
     <li>
-        <a href="{% url 'auto_detail'  auto.id %}">{{ auto.name }}</a>
-        {% if auto.owner == user %}
-        (<a href="{% url 'auto_update' auto.id %}">Edit</a> |
-        <a href="{% url 'auto_delete' auto.id %}">Delete</a>)
+        <a href="{% url 'horse_detail'  horse.id %}">{{ horse.name }}</a>
+        {% if horse.owner == user %}
+        (<a href="{% url 'horse_update' horse.id %}">Edit</a> |
+        <a href="{% url 'horse_delete' horse.id %}">Delete</a>)
         </p>
         {% endif %}
     </li>
   {% endfor %}
 </ul>
 {% else %}
-  <p>There are no autos in the database.</p>
+  <p>There are no horses in the database.</p>
 {% endif %}
 </p>
 <p>
-<a href="{% url 'auto_create' %}">Create an Auto</a> |
+<a href="{% url 'horse_create' %}">Create an horse</a> |
 {% if user.is_authenticated %}
-<a href="{% url 'logout' %}?next={% url 'autos' %}">Logout</a>
+<a href="{% url 'logout' %}?next={% url 'horses' %}">Logout</a>
 {% else %}
-<a href="{% url 'login' %}?next={% url 'autos' %}">Login</a>
+<a href="{% url 'login' %}?next={% url 'horses' %}">Login</a>
 {% endif %}
 </p>
 {% endblock %}

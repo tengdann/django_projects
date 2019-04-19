@@ -1,8 +1,8 @@
-{% extends "autos/base_menu.html" %}
+{% extends "horses/base_menu.html" %}
 {% block content %}
-<h1>Delete Auto</h1>
+<h1>Delete horse</h1>
 
-<p>Are you sure you want to delete the auto: {{ auto }}?</p>
+<p>Are you sure you want to delete the horse: {{ horse }}?</p>
 
 <form action="" method="POST">
   {% csrf_token %}

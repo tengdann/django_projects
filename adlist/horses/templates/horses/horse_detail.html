@@ -1,22 +1,22 @@
-{% extends "autos/base_menu.html" %}
+{% extends "horses/base_menu.html" %}
 {% load humanize %} <!-- https://docs.djangoproject.com/en/2.1/ref/contrib/humanize -->
 {% block content %}
 <span style="float: right;">
-({{ auto.updated_at|naturaltime }})
-{% if auto.owner == user %}
-<a href="{% url 'auto_update' auto.id %}"><i class="fa fa-pencil"></i></a>
-<a href="{% url 'auto_delete' auto.id %}"><i class="fa fa-trash"></i></a>
+({{ horse.updated_at|naturaltime }})
+{% if horse.owner == user %}
+<a href="{% url 'horse_update' horse.id %}"><i class="fa fa-pencil"></i></a>
+<a href="{% url 'horse_delete' horse.id %}"><i class="fa fa-trash"></i></a>
 {% endif %}
 </span>
-<h1>{{ auto.name }}</h1>
+<h1>{{ horse.name }}</h1>
 <p>
-{{ auto.detail }}
+{{ horse.detail }}
 </p>
 <p>
 {% if user.is_authenticated %}
 <br clear="all"/>
 <p>
-<form method="post" action="{% url 'comment_create' auto.id %}">
+<form method="post" action="{% url 'comment_create' horse.id %}">
     {% csrf_token %}
     {{ comment_form }}
 <input type="submit" value="Submit">
@@ -33,6 +33,6 @@
 {% endfor %}
 </p>
 <p>
-<a href="{% url 'autos' %}">All autos</a>
+<a href="{% url 'horses' %}">All horses</a>
 </p>
 {% endblock %}
